@@ -1,0 +1,23 @@
+{
+  "name": "formations",
+  "version": "1.0.0",
+  "description": "A validations library in es6 javascript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Agrosis/formations.git"
+  },
+  "keywords": [
+    "validations",
+    "es6"
+  ],
+  "author": "Muhtasim Ahsan <agro@jantox.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Agrosis/formations/issues"
+  },
+  "homepage": "https://github.com/Agrosis/formations"
+}
