@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Agrosis/formations/issues"
   },
-  "homepage": "https://github.com/Agrosis/formations"
+  "homepage": "https://github.com/Agrosis/formations",
+  "dependencies": {
+    "webpack": "^1.7.3"
+  }
 }
