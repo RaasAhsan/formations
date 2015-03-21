@@ -18,7 +18,7 @@ export default class ValidationResult {
     }).length;
   }
 
-  numberOfErrors() {
+  numberOfFails() {
     return this.results.filter(v => {
       return !v.passed;
     }).length;

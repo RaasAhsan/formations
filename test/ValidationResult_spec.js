@@ -27,7 +27,7 @@ describe('ValidationResult', function(){
     });
 
     expect(validationResult.numberOfSuccesses()).to.equal(1);
-    expect(validationResult.numberOfErrors()).to.equal(0);
+    expect(validationResult.numberOfFails()).to.equal(0);
   });
 
   it('should have one failed validation and no successful validations', function(){
@@ -37,7 +37,7 @@ describe('ValidationResult', function(){
       error: "The name is too long."
     });
 
-    expect(validationResult.numberOfErrors()).to.equal(1);
+    expect(validationResult.numberOfFails()).to.equal(1);
     expect(validationResult.numberOfSuccesses()).to.equal(0);
   });
 
