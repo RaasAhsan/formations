@@ -1,20 +1,32 @@
 
 export var number = new NumberValidation([]);
-export var string = new StringValidation([]);
+export var text = new TextValidation([]);
 export var boolean = new BooleanValidation([]);
 
-var createCheck = (check, error) => [{
-  check: check,
+var createConstraint = (constraint, error) => [{
+  constraint: constraint,
   error: error
 }]
 
 class NumberValidation {
-  constructor(checks) {
-    this.checks = checks;
+  constructor(constraints) {
+    this.constraints = constraints;
   }
 
   bounds(minimum, maximum, error) {
     return this.passes(i => i >= minimum && i <= maximum, error || `Input must be greater than or equal to ${minimum} and less than or equal to ${maximum}.`);
+  }
+
+  nonZero(error) {
+    return this.passes(i => i !== 0, error || `Input must be a non-zero number.`);
+  }
+
+  positive(error) {
+    return min(1, "Input must be positive.");
+  }
+
+  negative(error) {
+    return max(-1, "Input must be negative.");
   }
 
   min(minimum, error) {
@@ -29,8 +41,8 @@ class NumberValidation {
     return this.passes(i => i === another, error || `Input must be equal to ${another}.`);
   }
 
-  passes(check, error) {
-    return new NumberValidation(checks.concat(createCheck(check, error)));
+  passes(constraint, error) {
+    return new NumberValidation(constraints.concat(createConstraint(constraint, error)));
   }
 
   test(input) {
@@ -48,36 +60,40 @@ class NumberValidation {
   }
 }
 
-class StringValidation {
-  constructor(checks) {
-    this.checks = checks;
+class TextValidation {
+  constructor(constraints) {
+    this.constraints = constraints;
   }
 
-  minLength(minimum) {
+  nonEmpty(error) {
+    return minLength(1, "Input cannot be empty");
+  }
+
+  minLength(minimum, error) {
     return this.passes(i => i.length >= minimum, error || `Input's length must be greater than or equal to ${minimum}.`);
   }
 
-  maxLength(maximum) {
+  maxLength(maximum, error) {
     return this.passes(i => i.length <= minimum, error || `Input's length must be less than or equal to ${maximum}.`);
   }
 
-  equals(another) {
+  equals(another, error) {
     return this.passes(i => i === another, error || `Input must be equal to '${another}'.`);
   }
 
-  matches(regex) {
+  matches(regex, error) {
     return this.passes(i => i.match(regex), error || `Input must match the regex '${regex}'.`);
   }
 
-  passes(check, error) {
-    return new StringValidation(this.checks.concat(createCheck(check, error)));
+  passes(constraint, error) {
+    return new TextValidation(this.constraints.concat(createConstraint(constraint, error)));
   }
 
   test(input) {
 
   }
 
-  static checkString(input) {
+  static checkText(input) {
     if(typeof input === 'string') {
       return input;
     } else {
@@ -87,12 +103,12 @@ class StringValidation {
 }
 
 class BooleanValidation {
-  constructor(checks) {
-    this.checks = checks;
+  constructor(constraints) {
+    this.constraints = constraints;
   }
 
-  equals(another) {
-    return new BooleanValidation(this.checks.concat(createCheck(
+  equals(another, error) {
+    return new BooleanValidation(this.constraints.concat(createConstraint(
       i => i === another,
       error || `Input must be equal to '${another}'.`
     )));
