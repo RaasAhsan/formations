@@ -10,9 +10,9 @@ Features
 -----------------------------
 + Easily defined validations i.e. `number.min(10).max(56)` or `string.matches("[A-Za-z]")`
 + Makes no assumption of client/server
-+ Validates on JSON forms
-+ `"true"` and true will both validate as booleans (same with other validation types)
-+ Validate on your own "types" by validating on a string
++ Validates JSON forms
++ `"true"` and `true` will both validate as booleans (same with other validation types)
++ Validate on your own "types" by writing a string validation
 
 Usage
 -----------------------------
