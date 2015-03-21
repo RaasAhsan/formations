@@ -13,7 +13,17 @@ export default class BooleanValidation extends BaseValidation {
   }
 
   test(input) {
+    var boolean = BooleanValidation.checkBoolean(input);
+    if(boolean) {
+      var errors = this.constraints.map(c => {
+        var result = c.constraint(boolean);
+        return [result, result ? null : c.error];
+      }).filter(t => !t[0]).map(c => c[1]);
 
+      return errors;
+    } else {
+      return [`Input is not a boolean.`];
+    }
   }
 
   static checkBoolean(input) {

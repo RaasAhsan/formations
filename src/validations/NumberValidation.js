@@ -14,11 +14,11 @@ export default class NumberValidation extends BaseValidation {
   }
 
   positive(error) {
-    return min(1, "Input must be positive.");
+    return this.min(1, "Input must be positive.");
   }
 
   negative(error) {
-    return max(-1, "Input must be negative.");
+    return this.max(-1, "Input must be negative.");
   }
 
   min(minimum, error) {
@@ -26,7 +26,7 @@ export default class NumberValidation extends BaseValidation {
   }
 
   max(maximum, error) {
-    return this.passes(i => i <= minimum, error || `Input must be less than or equal to ${maximum}.`);
+    return this.passes(i => i <= maximum, error || `Input must be less than or equal to ${maximum}.`);
   }
 
   equals(another, error) {
@@ -34,11 +34,21 @@ export default class NumberValidation extends BaseValidation {
   }
 
   passes(constraint, error) {
-    return new NumberValidation(constraints.concat(this.createConstraint(constraint, error)));
+    return new NumberValidation(this.constraints.concat(this.createConstraint(constraint, error)));
   }
 
   test(input) {
+    var number = NumberValidation.checkNumber(input);
+    if(number) {
+      var errors = this.constraints.map(c => {
+        var result = c.constraint(number);
+        return [result, result ? null : c.error];
+      }).filter(t => !t[0]).map(c => c[1]);
 
+      return errors;
+    } else {
+      return [`Input is not a number.`];
+    }
   }
 
   static checkNumber(input) {
