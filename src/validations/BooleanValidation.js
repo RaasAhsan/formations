@@ -1,6 +1,6 @@
 import BaseValidation from './BaseValidation';
 
-export class BooleanValidation extends BaseValidation {
+export default class BooleanValidation extends BaseValidation {
   constructor(constraints) {
     this.constraints = constraints;
   }

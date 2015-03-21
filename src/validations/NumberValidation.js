@@ -1,6 +1,6 @@
 import BaseValidation from './BaseValidation';
 
-export class NumberValidation extends BaseValidation {
+export default class NumberValidation extends BaseValidation {
   constructor(constraints) {
     this.constraints = constraints;
   }
