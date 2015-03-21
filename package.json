@@ -4,7 +4,7 @@
   "description": "A validations library in es6 javascript.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha --recursive --compilers js:babel/register"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,11 @@
   },
   "homepage": "https://github.com/Agrosis/formations",
   "dependencies": {
+    "babel": "^4.7.16",
     "webpack": "^1.7.3"
+  },
+  "devDependencies": {
+    "chai": "^2.1.2",
+    "mocha": "^2.2.1"
   }
 }

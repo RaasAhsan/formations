@@ -1,11 +1,21 @@
 
-export defaultz class ValidationResult {
+export default class ValidationResult {
   constructor() {
     this.results = [];
   }
 
   passed() {
     return this.numberOfErrors() == 0;
+  }
+
+  numberOfChecks() {
+    return this.results.length;
+  }
+
+  numberOfSuccesses() {
+    return this.results.filter(v => {
+      return v.passed;
+    }).length;
   }
 
   numberOfErrors() {

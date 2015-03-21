@@ -1,3 +1,4 @@
+
 import ValidationResult from './ValidationResult';
 
 export var createValidation = function(validation, error) {
@@ -12,13 +13,13 @@ export var validateForm = function(form, fieldValidations) {
   Object.keys(form).forEach(key => {
     var validations = fieldValidations[key];
     if(validations) {
-      var tries = validations.foreach(v => {
+      var tries = validations.forEach(v => {
         var passed = v.validate(form[key])
 
         result.addCheck({
           field: key,
           passed: passed,
-          error: passed ? "" : v.error
+          error: passed ? null : v.error
         });
       });
     } else {
