@@ -9,24 +9,22 @@ export var createValidation = function(validation, error) {
 
 export var validateForm = function(form, fieldValidations) {
   var result = new ValidationResult();
-  for(var key in form) {
-    if(form.hasOwnProperty(key)) {
-      var validations = fieldValidations[key];
-      if(validations) {
-        var tries = validations.foreach(v => {
-          var passed = v.validate(form[key])
+  Object.keys(form).forEach(key => {
+    var validations = fieldValidations[key];
+    if(validations) {
+      var tries = validations.foreach(v => {
+        var passed = v.validate(form[key])
 
-          result.addCheck({
-            field: key,
-            passed: passed,
-            error: passed ? "" : v.error
-          });
+        result.addCheck({
+          field: key,
+          passed: passed,
+          error: passed ? "" : v.error
         });
-      } else {
-        console.warn("A validation for field `" + key + "` was not found. Set the validations to an empty array for this field.");
-      }
+      });
+    } else {
+      console.warn(`A validation for field ${key} was not found. Set the validations to an empty array for this field.`);
     }
-  }
+  });
 
   return result;
 }

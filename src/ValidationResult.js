@@ -1,5 +1,5 @@
 
-export default class ValidationResult {
+export defaultz class ValidationResult {
   constructor() {
     this.results = [];
   }
