@@ -1,4 +1,3 @@
-
 import ValidationResult from './ValidationResult';
 
 export var createValidation = function(validation, error) {
