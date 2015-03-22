@@ -1,1 +1,3 @@
-module.exports = require('./lib/Formations');
+var formations = require('./lib/Formations');
+
+module.exports = formations;
