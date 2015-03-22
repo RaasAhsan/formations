@@ -25,10 +25,10 @@ import {text, number, email} from 'formations/Validations';
 var form = formations.createForm(document, ['name', 'email', 'password', 'age']);
 
 var registerValidation = {
-  name: text.maxLength(32, "Your name must be less than 33 characters.."),
+  name: text.minLength(2, "You need a bigger name.").maxLength(32, "Your name must be less than 33 characters.."),
   password: text.bounds(8, 64, "Your password must be between 8 and 64 characters."),
-  email: email,
-  age: number.min(13, "You must be at least 13 years old.");
+  email: email.maxLength(64, "Use a smaller e-mail, please!"),
+  age: number.min(13, "You must be at least 13 years old.").max(80, "You're too old for this, dude.");
 };
 
 var results = formations.validateForm(form, registerValidation);
