@@ -1,5 +1,6 @@
 import ValidationResult from './ValidationResult';
 
+
 export var Validations = require('./Validations');
 
 export var validateForm = function(form, fieldValidations) {
