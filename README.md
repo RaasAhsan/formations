@@ -1,6 +1,6 @@
 Formations [![Build Status](https://travis-ci.org/Agrosis/formations.svg?branch=master)](https://travis-ci.org/Agrosis/formations)
 =============================
-A simple and complete server-side and client-side validations library in ES6 JavaScript.
+A simple and complete server-side and client-side validations library in ES6 JavaScript compiled with Babel.
 
 Influence
 -----------------------------
