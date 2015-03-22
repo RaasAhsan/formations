@@ -1,5 +1,7 @@
 import ValidationResult from './ValidationResult';
 
+export var Validations = require('./Validations');
+
 export var validateForm = function(form, fieldValidations) {
   var results = Object.keys(form).map(key => {
     var validation = fieldValidations[key];

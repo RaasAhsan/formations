@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-import {validateForm, getField, createForm} from '../src/formations';
+import {validateForm, getField, createForm} from '../src/Formations';
 import {number, text, boolean} from '../src/Validations';
 
 describe('formations', function(){
