@@ -9,7 +9,7 @@ describe('ValidationResult', function(){
     validationResult = new ValidationResult([{
       field: 'name',
       passed: true,
-      errors: null
+      errors: []
     }]);
 
     expect(validationResult.fields().length).to.equal(1);
@@ -19,7 +19,7 @@ describe('ValidationResult', function(){
     validationResult = new ValidationResult([{
       field: 'name',
       passed: true,
-      errors: null
+      errors: []
     }]);
 
     expect(validationResult.successes()).to.have.length(1);

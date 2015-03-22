@@ -10,7 +10,7 @@ export var validateForm = function(form, fieldValidations) {
       return {
         field: key,
         passed: passed,
-        errors: passed ? null : errors
+        errors: passed ? [] : errors
       };
     } else {
       console.warn(`A validation for field ${key} was not found. Set the validations to an empty array for this field.`);
@@ -18,7 +18,7 @@ export var validateForm = function(form, fieldValidations) {
       return {
         field: key,
         passed: true,
-        errors: null
+        errors: []
       };
     }
   });
@@ -26,12 +26,18 @@ export var validateForm = function(form, fieldValidations) {
 }
 
 export var getField = function(target, name) {
-    return target.querySelector('[name="' + name + '"]').value;
+    var field = target.querySelector('[name="' + name + '"]').value;
+    if(!field) {
+      console.warn(`The field ${name} couldn't be found in the given target.`);
+    }
+    return field;
 };
 
 export var createForm = function(target, fields) {
   return fields.reduce(function(acc, x) {
-    acc[x] = getField(target, x);
+    var field = getField(target, x);
+    if(field)
+      acc[x] = getField(target, x);
     return acc;
   }, {});
 }

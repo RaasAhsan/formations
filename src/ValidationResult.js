@@ -25,14 +25,12 @@ export default class ValidationResult {
   }
 
   getErrorsFor(field) {
-    var check = this.results.filter(v => {
-      return v.field === field;
-    });
-    if(check.length == 0) {
+    var check = this.results.find(v => v.field === field);
+    if(check) {
+      return check.passed ? [] : check.errors;
+    } else {
       console.warn("A field with key `{$field}` does not exist.");
       return null;
-    } else {
-      return check[0].passed ? null : check[0].errors;
     }
   }
 }

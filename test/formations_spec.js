@@ -30,8 +30,16 @@ describe('formations', function(){
 
   it('should return the errors for a field', function(){
     var nameError = errors.getErrorsFor('name');
+    var noError = errors.getErrorsFor('password');
 
     expect(nameError[0]).to.equal("The name is too long.");
+    expect(noError).to.have.length(0);
+  });
+
+  it('should return null errors for a non-existant field', function(){
+    var check = errors.getErrorsFor('wee');
+
+    expect(check).to.equal(null);
   });
 
 });
