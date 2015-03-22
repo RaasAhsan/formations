@@ -1,1 +1,1 @@
-module.exports = require('lib/Formations');
+module.exports = require('./lib/Formations');
