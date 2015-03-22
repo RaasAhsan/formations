@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-import {text} from '../../src/Validations';
+import {text, email} from '../../src/Validations';
 
 describe('TextValidation', function(){
   var textValidation;
@@ -47,6 +47,13 @@ describe('TextValidation', function(){
     expect(textValidation.test("2")).to.have.length(1);
     expect(textValidation.test("a")).to.have.length(0);
   });
+
+  it('should test email validations correctly', function(){
+    textValidation = email;
+
+    expect(textValidation.test("agro@jantox.com")).to.have.length(0);
+    expect(textValidation.test("a@a")).to.have.length(1);
+  })
 
   it('should test combinations of string validations correctly', function(){
     textValidation = text.minLength(2).maxLength(8);

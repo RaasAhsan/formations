@@ -16,9 +16,36 @@ Features
 
 Usage
 -----------------------------
-You can validate on `number`, `float`, `boolean`, and `text`. If there is a validation type we don't have, just write a `string` validation for it with the appropriate tests.
+Here is an example validation for a register form.
 
+```javascript
+import * as formations from 'formations';
+import {text, number, email} from 'formations/Validations';
 
+var form = formations.createForm(document, ['name', 'email', 'password', 'age']);
+
+var registerValidation = {
+  name: text.maxLength(32, "Your name must be less than 33 characters.."),
+  password: text.bounds(8, 64, "Your password must be between 8 and 64 characters."),
+  email: email,
+  age: number.min(13, "You must be at least 13 years old.");
+};
+
+var results = formations.validateForm(form, registerValidation);
+
+if(results.passed())
+  console.log("You're good to go!");
+else
+  console.log("fail");
+```
+
+### List of validations
++ number
++ text
++ boolean
++ email
+
+If there is a validation "type" we don't have, just write a `text` validation and write the needed constraints.
 
 Contributing
 -----------------------------
