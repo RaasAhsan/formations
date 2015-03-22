@@ -1,43 +1,38 @@
 
 export default class ValidationResult {
-  constructor() {
-    this.results = [];
+  constructor(results) {
+    this.results = results;
   }
 
   passed() {
-    return this.numberOfErrors() == 0;
+    return this.fails().length === 0;
   }
 
-  numberOfChecks() {
-    return this.results.length;
+  fields() {
+    return this.results;
   }
 
-  numberOfSuccesses() {
+  successes() {
     return this.results.filter(v => {
       return v.passed;
-    }).length;
+    });
   }
 
-  numberOfFails() {
+  fails() {
     return this.results.filter(v => {
       return !v.passed;
-    }).length;
+    });
   }
 
-  getErrorFor(field) {
+  getErrorsFor(field) {
     var check = this.results.filter(v => {
-      return v.field == field;
+      return v.field === field;
     });
     if(check.length == 0) {
       console.warn("A field with key `{$field}` does not exist.");
       return null;
     } else {
-      return check.passed ? null : check.error;
+      return check[0].passed ? null : check[0].errors;
     }
   }
-
-  addCheck(check) {
-    this.results.push(check);
-  }
-
 }

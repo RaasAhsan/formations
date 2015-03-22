@@ -1,32 +1,28 @@
 import ValidationResult from './ValidationResult';
 
-export var createValidation = function(validation, error) {
-  return {
-    validate: validation,
-    error: error
-  };
-};
-
 export var validateForm = function(form, fieldValidations) {
-  var result = new ValidationResult();
-  Object.keys(form).forEach(key => {
-    var validations = fieldValidations[key];
-    if(validations) {
-      var tries = validations.forEach(v => {
-        var passed = v.validate(form[key])
+  var results = Object.keys(form).map(key => {
+    var validation = fieldValidations[key];
+    if(validation) {
+      var errors = validation.test(form[key]);
+      var passed = errors.length === 0;
 
-        result.addCheck({
-          field: key,
-          passed: passed,
-          error: passed ? null : v.error
-        });
-      });
+      return {
+        field: key,
+        passed: passed,
+        errors: passed ? null : errors
+      };
     } else {
       console.warn(`A validation for field ${key} was not found. Set the validations to an empty array for this field.`);
+
+      return {
+        field: key,
+        passed: true,
+        errors: null
+      };
     }
   });
-
-  return result;
+  return new ValidationResult(results);
 }
 
 export var getField = function(target, name) {
