@@ -2,9 +2,11 @@
   "name": "formations",
   "version": "1.0.0",
   "description": "A validations library in es6 javascript.",
-  "main": "index.js",
+  "main": "formations.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --recursive --compilers js:babel/register"
+    "test": "./node_modules/mocha/bin/mocha --recursive --compilers js:babel/register",
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
