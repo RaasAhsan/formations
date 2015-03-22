@@ -16,8 +16,7 @@ Features
 
 Install
 -----------------------------
-Run:
-`npm install --save formations`
+To install, just run: `npm install --save formations`
 
 Usage
 -----------------------------
