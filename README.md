@@ -14,25 +14,30 @@ Features
 + `"true"` and `true` will both validate as booleans (same with other validation types)
 + Validate on your own "types" by writing `text` constraints
 
+Install
+-----------------------------
+Run:
+`npm install --save formations`
+
 Usage
 -----------------------------
 Here is an example validation for a register form.
 
 ```javascript
 import * as formations from 'formations';
-import {text, number, email} from 'formations/Validations';
-
+import {text, number, email} from 'formations/lib/Validations';
+ 
 var form = formations.createForm(document, ['name', 'email', 'password', 'age']);
-
+ 
 var registerValidation = {
   name: text.minLength(2, "You need a bigger name.").maxLength(32, "Your name must be less than 33 characters.."),
   password: text.bounds(8, 64, "Your password must be between 8 and 64 characters."),
   email: email.maxLength(64, "Use a smaller e-mail, please!"),
-  age: number.min(13, "You must be at least 13 years old.").max(80, "You're too old for this, dude.");
+  age: number.min(13, "You must be at least 13 years old.").max(80, "You're too old for this, dude.")
 };
-
+ 
 var results = formations.validateForm(form, registerValidation);
-
+ 
 if(results.passed())
   console.log("You're good to go!");
 else
