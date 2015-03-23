@@ -13,6 +13,7 @@ Features
 + Validates JSON forms
 + `"true"` and `true` will both validate as booleans (same with other validation types)
 + Validate on your own "types" by writing `text` constraints
++ Cross-form validation (lame example for now)
 
 Install
 -----------------------------
@@ -32,7 +33,8 @@ var registerValidation = {
   name: text.minLength(2, "You need a bigger name.").maxLength(32, "Your name must be less than 33 characters.."),
   password: text.bounds(8, 64, "Your password must be between 8 and 64 characters."),
   email: email.maxLength(64, "Use a smaller e-mail, please!"),
-  age: number.min(13, "You must be at least 13 years old.").max(80, "You're too old for this, dude.")
+  age: number.min(13, "You must be at least 13 years old.").max(80, "You're too old for this, dude."),
+  correctAge: boolean.cross('age', number.bounds(13, 80), boolean.equals(true), "You have to say if you're the correct age.")
 };
  
 var results = formations.validateForm(form, registerValidation);
