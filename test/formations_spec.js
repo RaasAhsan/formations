@@ -7,17 +7,20 @@ describe('formations', function(){
   var form = {
     name: 'Agro',
     email: 'agro@jantox.com',
-    password: 'ilikecake'
+    password: 'ilikecake',
+    counter: 10
   };
   var faulty = {
     name: 'Agrosissy',
     email: 'notanemail',
-    password: 'ilikecake'
+    password: 'ilikecake',
+    counter: 5
   };
   var validation = {
     name: text.maxLength(6, "The name is too long."),
     email: text.minLength(11),
-    password: text
+    password: text,
+    counter: number.cross('password', text.minLength(5), number.min(8), "number too small.")
   }
 
   var results = validateForm(form, validation);
@@ -30,10 +33,18 @@ describe('formations', function(){
 
   it('should return the errors for a field', function(){
     var nameError = errors.getErrorsFor('name');
-    var noError = errors.getErrorsFor('password');
+    var noPasswordError = errors.getErrorsFor('password');
 
     expect(nameError[0]).to.equal("The name is too long.");
-    expect(noError).to.have.length(0);
+    expect(noPasswordError).to.have.length(0);
+  });
+
+  it('should correctly test cross-validated fields', function(){
+    var counterError = errors.getErrorsFor('counter');
+
+    console.log(errors);
+
+    expect(counterError[0]).to.equal("number too small.");
   });
 
   it('should return null errors for a non-existant field', function(){

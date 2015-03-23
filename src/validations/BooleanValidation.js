@@ -12,11 +12,11 @@ export default class BooleanValidation extends BaseValidation {
     )));
   }
 
-  test(input) {
+  test(input, form) {
     var boolean = BooleanValidation.checkBoolean(input);
     if(boolean) {
       var errors = this.constraints.map(c => {
-        var result = c.constraint(boolean);
+        var result = c.constraint(boolean, form);
         return [result, result ? null : c.error];
       }).filter(t => !t[0]).map(c => c[1]);
 

@@ -7,7 +7,7 @@ export var validateForm = function(form, fieldValidations) {
   var results = Object.keys(form).map(key => {
     var validation = fieldValidations[key];
     if(validation) {
-      var errors = validation.test(form[key]);
+      var errors = validation.test(form[key], form);
       var passed = errors.length === 0;
 
       return {
