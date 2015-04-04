@@ -29,11 +29,13 @@ export var validateForm = function(form, fieldValidations) {
 }
 
 export var getField = function(target, name) {
-  var field = target.querySelector('[name="' + name + '"]').value;
-  if(!field) {
-    console.warn(`The field ${name} couldn't be found in the given target.`);
+  var field = target.querySelector('[name="' + name + '"]');
+  if(field) {
+    return field.value;
+  } else {
+    console.warn(`The field ${name} couldn't be found in the given target. Returning an empty string.`);
+    return "";
   }
-  return field || "";
 };
 
 export var createForm = function(target, fields) {
