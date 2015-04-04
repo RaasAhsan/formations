@@ -10,11 +10,11 @@ export default class BaseValidation {
   // if the given field's validation is successful, impose the given constraint, otherwise ignore it
   cross(field, validation, constraint, error) {
     return this.passes((i, form) => {
-      if(!validation) {
+      if(validation == null) {
         console.warn(`Invalid validation specified.`);
         return true;
       }
-      if(!form[field]) {
+      if(form[field] == null) {
         console.warn(`The key '${field}' doesn't exist in the specified form.`);
         return true;
       }
