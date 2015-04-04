@@ -39,7 +39,7 @@ export default class NumberValidation extends BaseValidation {
 
   test(input, form) {
     var number = NumberValidation.checkNumber(input);
-    if(number) {
+    if(number != null) {
       var errors = this.constraints.map(c => {
         var result = c.constraint(number, form);
         return [result, result ? null : c.error];

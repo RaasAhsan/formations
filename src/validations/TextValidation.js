@@ -35,7 +35,7 @@ export default class TextValidation extends BaseValidation {
 
   test(input, form) {
     var text = TextValidation.checkText(input);
-    if(text) {
+    if(text != null) {
       var errors = this.constraints.map(c => {
         var result = c.constraint(text, form);
         return [result, result ? null : c.error];

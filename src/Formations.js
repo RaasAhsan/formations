@@ -5,14 +5,6 @@ export var Validations = require('./Validations');
 
 export var validateForm = function(form, fieldValidations) {
   var results = Object.keys(form).map(key => {
-    if(key == null && form[key] == null) {
-      return {
-        field: key,
-        passed: false,
-        errors: ["field not found."]
-      };
-    }
-
     var validation = fieldValidations[key];
     if(validation != null) {
       var errors = validation.test(form[key], form);
