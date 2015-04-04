@@ -1,6 +1,6 @@
 {
   "name": "formations",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "A validations library in es6 javascript.",
   "main": "index.js",
   "scripts": {
